@@ -1,0 +1,30 @@
+<div id="device-selection">
+  <h2>Device Management</h2>
+  
+  <div id="location-search">
+    <input type="text" id="location-input" placeholder="Search location">
+    <button id="search-devices">Search Devices</button>
+  </div>
+
+  <table id="device-table">
+    <thead>
+      <tr>
+        <th>Device Name</th>
+        <th>Consumption (kWh)</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Device rows will be dynamically inserted here -->
+    </tbody>
+  </table>
+
+  <h3>Add New Device</h3>
+  <form id="new-device-form">
+    <input type="text" id="new-device-name" placeholder="Device Name" required>
+    <input type="number" id="new-device-consumption" placeholder="Initial Consumption (kWh)" required>
+    <input type="text" id="new-device-location" placeholder="Device Location" required>
+    <button type="submit">Add Device</button>
+  </form>
+</div>

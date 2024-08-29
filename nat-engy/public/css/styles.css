@@ -1,0 +1,147 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+#dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#device-selection, #usage-statistics, #device-leaderboard, #location-selection {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+#device-selection:hover, #usage-statistics:hover, #device-leaderboard:hover, #location-selection:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+}
+
+#location-search, #location-form {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"], button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#new-device-form {
+    display: grid;
+    gap: 10px;
+}
+
+button.remove-device {
+    background-color: #ff4136;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button.remove-device:hover {
+    background-color: #ff1a1a;
+}
+
+#device-list, #leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#location-search, #location-input {
+        width: 100%;
+}
+
+#device-list li, #leaderboard-list li {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#device-list li:last-child, #leaderboard-list li:last-child {
+    border-bottom: none;
+}
+
+#clear-leaderboard {
+    background-color: #e74c3c;
+    margin-top: 10px;
+}
+
+#clear-leaderboard:hover {
+    background-color: #c0392b;
+}
+
+@media screen and (min-width: 768px) {
+    #dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #location-search, #location-form {
+        flex-direction: row;
+    }
+
+    input[type="text"], input[type="number"] {
+        flex-grow: 1;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #dashboard {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
