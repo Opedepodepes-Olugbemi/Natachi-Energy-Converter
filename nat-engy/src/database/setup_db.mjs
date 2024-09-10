@@ -97,3 +97,5 @@ db.exec(setupScript, (err) => {
   }
   db.close();
 });
+
+export default db;

@@ -3,6 +3,8 @@ import sqlite3 from 'sqlite3';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import apiRoutes from './routes/api.mjs';
+import deviceRoutes from './routes/deviceRoutes.mjs';
+import conversionRoutes from './routes/conversionRoutes.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +36,8 @@ app.get('/', (req, res) => {
 
 // API routes
 app.use('/api', apiRoutes);
+app.use('/api/devices', deviceRoutes);
+app.use('/api/conversions', conversionRoutes);
 
 // Start server
 app.listen(port, () => {
