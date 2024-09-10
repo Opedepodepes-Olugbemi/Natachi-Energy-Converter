@@ -1,18 +1,25 @@
 {
   "name": "nat-engy",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "src/server.mjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "dev": "nodemon src/server.mjs",
+    "start": "node server.mjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "Natachi John",
   "license": "ISC",
   "dependencies": {
+    "db": "^6.0.3",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "nat-engy": "file:"
-  }
+    "nat-engy": "file:",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "description": ""
 }

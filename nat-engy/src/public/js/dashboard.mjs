@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize devices from local storage or use default if empty
-  let devices = JSON.parse(localStorage.getItem('devices')) || {
-    'My Laptop': { consumption: 100, location: 'Home Office' }
-  };
+  let devices = JSON.parse(localStorage.getItem('devices')) || {};
 
   function saveDevicesToLocalStorage() {
     localStorage.setItem('devices', JSON.stringify(devices));
@@ -20,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
           <td>${device}</td>
           <td>${data.consumption.toFixed(2)}</td>
           <td>${data.location}</td>
+          <td>${data.energySource}</td>
+          <td>${data.usageTime}</td>
           <td>
             <button class="remove-device" data-device="${device}">Remove</button>
           </td>
@@ -64,13 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const newDeviceName = document.getElementById('new-device-name').value;
     const newDeviceConsumption = parseFloat(document.getElementById('new-device-consumption').value);
     const newDeviceLocation = document.getElementById('new-device-location').value;
+    const newDeviceEnergySource = document.getElementById('new-device-energy-source').value;
+    const newDeviceUsageTime = document.getElementById('new-device-usage-time').value;
 
     if (devices[newDeviceName]) {
       alert('Device already exists!');
       return;
     }
 
-    devices[newDeviceName] = { consumption: newDeviceConsumption, location: newDeviceLocation };
+    devices[newDeviceName] = { consumption: newDeviceConsumption, location: newDeviceLocation, energySource: newDeviceEnergySource, usageTime: newDeviceUsageTime };
     saveDevicesToLocalStorage();
     updateDeviceTable();
     updateDeviceLeaderboard();
@@ -93,10 +95,25 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function updateUsageStatistics() {
-    const totalConsumption = Object.values(devices).reduce((sum, device) => sum + device.consumption, 0);
-    document.getElementById('total-consumption').textContent = totalConsumption.toFixed(2);
-    document.getElementById('daily-average').textContent = (totalConsumption / 30).toFixed(2);
-    document.getElementById('monthly-cost').textContent = (totalConsumption * 0.12).toFixed(2);
+    const stats = Object.values(devices).reduce((acc, device) => {
+      acc.totalConsumption += device.consumption;
+      acc.totalUsageTime += parseFloat(device.usageTime);
+      acc.energySources[device.energySource] = (acc.energySources[device.energySource] || 0) + device.consumption;
+      return acc;
+    }, { totalConsumption: 0, totalUsageTime: 0, energySources: {} });
+
+    document.getElementById('total-consumption').textContent = stats.totalConsumption.toFixed(2);
+    document.getElementById('daily-average').textContent = (stats.totalConsumption / 30).toFixed(2);
+    document.getElementById('monthly-cost').textContent = (stats.totalConsumption * 0.12).toFixed(2);
+    document.getElementById('total-usage-time').textContent = stats.totalUsageTime.toFixed(2);
+
+    const energySourcesList = document.getElementById('energy-sources-list');
+    energySourcesList.innerHTML = '';
+    for (const [source, consumption] of Object.entries(stats.energySources)) {
+      const li = document.createElement('li');
+      li.textContent = `${source}: ${consumption.toFixed(2)} kWh`;
+      energySourcesList.appendChild(li);
+    }
   }
 
   function clearLeaderboard() {

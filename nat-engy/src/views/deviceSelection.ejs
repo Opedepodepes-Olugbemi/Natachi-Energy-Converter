@@ -12,6 +12,8 @@
         <th>Device Name</th>
         <th>Consumption (kWh)</th>
         <th>Location</th>
+        <th>Energy Source</th>
+        <th>Daily Usage (hours)</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -25,6 +27,15 @@
     <input type="text" id="new-device-name" placeholder="Device Name" required>
     <input type="number" id="new-device-consumption" placeholder="Initial Consumption (kWh)" required>
     <input type="text" id="new-device-location" placeholder="Device Location" required>
+    <select id="new-device-energy-source" required>
+      <option value="">Select Energy Source</option>
+      <option value="electric">Electric</option>
+      <option value="wind">Wind</option>
+      <option value="solar">Solar</option>
+      <option value="gas">Gas</option>
+      <option value="coal">Coal</option>
+    </select>
+    <input type="number" id="new-device-usage-time" placeholder="Daily Usage Time (hours)" required>
     <button type="submit">Add Device</button>
   </form>
 </div>
