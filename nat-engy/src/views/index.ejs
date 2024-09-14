@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Welcome to Nat-Engy</h1>
+    <h1>Device Management</h1>
 
-    <div id="dashboard">
+    <%- include('partials/navbar') %>
+
+    <div id="card">
         <%- include('deviceSelection') %>
-        <%- include('usageStatistics') %>
-        <%- include('deviceLeaderboard') %>
     </div>
+
+    <%- include('partials/footer') %>
 
     <script type="module" src="/js/dashboard.mjs"></script>
 </body>

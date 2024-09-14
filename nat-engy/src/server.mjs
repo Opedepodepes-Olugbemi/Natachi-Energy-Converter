@@ -34,10 +34,32 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/device-leaderboard', (req, res) => {
+    res.render('deviceLeaderboard');
+});
+
+app.get('/usage-statistics', (req, res) => {
+    res.render('usageStatistics');
+});
+
+app.get('/search-location', (req, res) => {
+    res.render('locationSelection');
+});
+
 // API routes
 app.use('/api', apiRoutes);
 app.use('/api/devices', deviceRoutes);
 app.use('/api/conversions', conversionRoutes);
+
+// Error handling middleware
+app.use((req, res, next) => {
+    res.status(404).render('error', { message: 'Page not found' });
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render('error', { message: 'Something went wrong!' });
+});
 
 // Start server
 app.listen(port, () => {

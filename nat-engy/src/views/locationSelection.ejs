@@ -1,14 +1,39 @@
-<div id="location-selection">
-  <h2>Location Selection</h2>
-  <form id="location-form">
-    <input type="text" id="location-search" placeholder="Enter address or place name" required>
-    <button type="submit">Search</button>
-  </form>
-  <div id="location-results">
-    <!-- Search results will be displayed here -->
-  </div>
-  <div id="selected-location">
-    <h3>Current Location:</h3>
-    <p id="current-location">No location selected</p>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Selection - Natachi Energy Converter</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main id="location-selection">
+      <h2>Search Device by Location</h2>
+      <div id="location-search">
+        <input type="text" id="location-input" placeholder="Search location">
+        <button id="search-devices">Search Devices</button>
+      </div>
+      <table id="device-table">
+        <thead>
+          <tr>
+            <th>Device Name</th>
+            <th>Consumption (kWh)</th>
+            <th>Location</th>
+            <th>Energy Source</th>
+            <th>Daily Usage (hours)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Device rows will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script type="module" src="/js/searchDevices.mjs"></script>
+</body>
+</html>

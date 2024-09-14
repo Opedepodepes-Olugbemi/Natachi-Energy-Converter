@@ -1,11 +1,14 @@
+
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize devices from local storage or use default if empty
   let devices = JSON.parse(localStorage.getItem('devices')) || {};
 
+  // Function to save devices to local storage
   function saveDevicesToLocalStorage() {
     localStorage.setItem('devices', JSON.stringify(devices));
   }
 
+  // Function to update the device table with optional location filter
   function updateDeviceTable(filterLocation = '') {
     console.log("Updating device table with filter:", filterLocation);
     const tableBody = document.querySelector('#device-table tbody');
@@ -36,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Device table updated");
   }
 
+  // Function to remove a device
   function removeDevice(deviceName) {
     if (confirm(`Are you sure you want to remove ${deviceName}?`)) {
       delete devices[deviceName];
@@ -47,18 +51,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function searchDevices() {
-    const query = document.getElementById('location-input').value.toLowerCase();
-    console.log("Searching devices with query:", query);
-    updateDeviceTable(query);
+  // Function to show all devices in the table when the window loads
+  function showAllDevices() {
+    console.log("Showing all devices");
+    updateDeviceTable();
   }
 
-  document.getElementById('search-devices').addEventListener('click', function(e) {
-    e.preventDefault();
-    console.log("Search button clicked");
-    searchDevices();
-  });
+  // Add event listener to load all devices when the window starts
+  window.addEventListener('load', showAllDevices);
 
+
+
+  // Event listener for new device form submission
   document.getElementById('new-device-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const newDeviceName = document.getElementById('new-device-name').value;
@@ -82,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     this.reset();
   });
 
+  // Function to update the device leaderboard
   function updateDeviceLeaderboard() {
     const leaderboardList = document.getElementById('leaderboard-list');
     leaderboardList.innerHTML = '';
@@ -94,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
+  // Function to update usage statistics
   function updateUsageStatistics() {
     const stats = Object.values(devices).reduce((acc, device) => {
       acc.totalConsumption += device.consumption;
@@ -116,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Function to clear the leaderboard and remove all devices
   function clearLeaderboard() {
     devices = {};
     saveDevicesToLocalStorage();
@@ -125,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     alert('Leaderboard and all devices have been cleared.');
   }
 
+  // Event listener for clear leaderboard button
   document.getElementById('clear-leaderboard').addEventListener('click', function() {
     if (confirm('Are you sure you want to clear the leaderboard? This will remove all devices.')) {
       clearLeaderboard();
@@ -136,4 +144,3 @@ document.addEventListener('DOMContentLoaded', function() {
   updateDeviceLeaderboard();
   updateUsageStatistics();
 });
-

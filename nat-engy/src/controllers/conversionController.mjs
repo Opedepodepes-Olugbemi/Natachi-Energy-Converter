@@ -1,4 +1,4 @@
-import Conversion from '../models/Conversion.mjs';
+import Conversion from '../models/ConversionModel.mjs';
 
 export const getConversionFactors = (req, res) => {
   Conversion.getConversionFactors((err, factors) => {

@@ -1,7 +1,7 @@
-import Device from '../models/Device.mjs';
+import DeviceModel from '../models/DeviceModel.mjs';
 
 export const getAllDevices = (req, res) => {
-  Device.getAllDevices((err, devices) => {
+  DeviceModel.getAllDevices((err, devices) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
@@ -12,7 +12,7 @@ export const getAllDevices = (req, res) => {
 
 export const addDevice = (req, res) => {
   const { name, consumption, location, energySource, usageTime } = req.body;
-  Device.addDevice({ name, consumption, location, energySource, usageTime }, (err) => {
+  DeviceModel.addDevice({ name, consumption, location, energySource, usageTime }, (err) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
@@ -23,7 +23,7 @@ export const addDevice = (req, res) => {
 
 export const removeDevice = (req, res) => {
   const { id } = req.params;
-  Device.removeDevice(id, (err) => {
+  DeviceModel.removeDevice(id, (err) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;

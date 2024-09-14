@@ -1,5 +1,39 @@
-<div id="device-leaderboard" class="card">
-  <h2>Device Leaderboard</h2>
-  <ul id="leaderboard-list"></ul>
-  <button id="clear-leaderboard">Clear Leaderboard</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Leaderboard - Nat-Engy</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  
+  <%- include('partials/navbar') %>
+
+
+    <main>
+        <h1>Device Leaderboard</h1>
+        <div id="device-leaderboard" class="card">
+            <h2>Top Energy Consumers</h2>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Device</th>
+                        <th>Consumption (kWh)</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <!-- Leaderboard data will be dynamically inserted here -->
+                </tbody>
+            </table>
+            <button id="clear-leaderboard">Clear Leaderboard</button>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script type="module" src="/js/leaderboard.mjs"></script>
+</body>
+</html>
